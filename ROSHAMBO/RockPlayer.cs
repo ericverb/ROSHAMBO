@@ -8,7 +8,7 @@ namespace ROSHAMBO
 {
     public class RockPlayer : Player
     {
-        public RockPlayer(string name) : base( name)
+        public RockPlayer(string name) : base(name)
         {
             Name = name;
         }

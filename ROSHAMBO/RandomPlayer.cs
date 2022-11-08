@@ -31,7 +31,6 @@ namespace ROSHAMBO
                 default:
                     return Roshambo.Scissors;
             }
-
         }
     }
 }

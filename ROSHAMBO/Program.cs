@@ -1,8 +1,7 @@
-﻿using System.Net.Http.Headers;
-using ROSHAMBO;
+﻿using ROSHAMBO;
 
 RockPlayer theRock = new RockPlayer("The Rock");
-RandomPlayer theRando = new RandomPlayer("The Wiffer");
+RandomPlayer theRandom = new RandomPlayer("Kevin Hart");
 HumanPlayer player1 = new HumanPlayer("Player 1");
 bool play = true;
 
@@ -17,9 +16,9 @@ while (play)
 {
     try
     {
-        Console.WriteLine($"Would you like to play against {theRock.Name} or {theRando.Name} (r/w)?: \r\n");
-        string player2 = Console.ReadLine().Trim().ToLower();
-        bool isValid = player2 == "r" || player2 == "w";
+        Console.WriteLine($"Would you like to play against {theRock.Name} or {theRandom.Name} (r/k)?: \r\n");
+        string player2 = Console.ReadLine()!.Trim().ToLower();
+        bool isValid = player2 is "r" or "k";
 
         if (isValid)
         {
@@ -72,7 +71,7 @@ string PlayGame(string opponent)
     Console.WriteLine("Rock, paper, or scissors ? (R / P / S)");
     string userPlay = Console.ReadLine()!.Trim().ToLower();
 
-    bool isValid = userPlay == "r" || userPlay == "p" || userPlay == "s";
+    bool isValid = userPlay is "r" or "p" or "s";
 
     if (isValid)
     {
@@ -83,14 +82,16 @@ string PlayGame(string opponent)
                 break;
             case "p":
                 player1.Roshambo = Roshambo.Paper;
-                    break;
+                break;
             default:
                 player1.Roshambo = Roshambo.Scissors;
                 break;
         }
     }
-    else 
-
+    else
+    {
+        return $"You Did Not enter a valid Option {userPlay}";
+    }
 
     if (opponent == "r")
     {
@@ -103,10 +104,10 @@ string PlayGame(string opponent)
     }
 
     player1.Roshambo = player1.GenerateRoshambo();
-    theRando.Roshambo = theRando.GenerateRoshambo();
+    theRandom.Roshambo = theRandom.GenerateRoshambo();
     Console.WriteLine($"{player1.Name.ToUpper()}: {player1.Roshambo.ToString()}");
-    Console.WriteLine($"{theRando.Name.ToUpper()}: {theRando.Roshambo.ToString()}");
-    var resultsW = CheckOutcome(player1.Roshambo.ToString(), theRock.Roshambo.ToString());
+    Console.WriteLine($"{theRandom.Name.ToUpper()}: {theRandom.Roshambo.ToString()}");
+    var resultsW = CheckOutcome(player1.Roshambo.ToString(), theRandom.Roshambo.ToString());
     return resultsW;
 }
 
@@ -122,6 +123,10 @@ string CheckOutcome(string player1, string computerPlayer)
     {
         return "You Win! Rock smashes scissors";
     }
+    if (player1 == "Rock" && computerPlayer == "Rock")
+    {
+        return "You Draw!";
+    }
 
     if (player1 == "Paper" && computerPlayer == "Rock")
     {
@@ -131,6 +136,11 @@ string CheckOutcome(string player1, string computerPlayer)
     if (player1 == "Paper" && computerPlayer == "Scissors")
     {
         return "You Lose! Scissors cuts paper";
+    }
+
+    if (player1 == "Paper" && computerPlayer == "Paper")
+    {
+        return "You Draw!";
     }
 
     if (player1 == "Scissors" && computerPlayer == "Rock")

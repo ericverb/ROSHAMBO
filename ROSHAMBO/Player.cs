@@ -17,6 +17,5 @@ namespace ROSHAMBO
         }
 
         public abstract Roshambo GenerateRoshambo();
-        
     }
 }
