@@ -2,7 +2,7 @@
 
 RockPlayer theRock = new RockPlayer("The Rock");
 RandomPlayer theRandom = new RandomPlayer("Kevin Hart");
-HumanPlayer player1 = new HumanPlayer("Player 1");
+HumanPlayer player1 = new HumanPlayer("");
 bool play = true;
 
 
@@ -57,12 +57,17 @@ bool PlayAgain()
 }
 
 
-void CheckPlayerName(string name)
+void CheckPlayerName(string player1Name)
 {
-    if (name != "Player 1")
+    if (player1Name != "")
     {
-        player1.Name = name;
+        player1.Name = player1Name;
     }
+    else
+    {
+        player1.Name = "player 1";
+    }
+
 }
 
 
@@ -97,9 +102,9 @@ string PlayGame(string opponent)
     {
         player1.Roshambo = player1.GenerateRoshambo();
         theRock.Roshambo = theRock.GenerateRoshambo();
-        Console.WriteLine($"{player1.Name.ToUpper()}: {player1.Roshambo.ToString()}");
-        Console.WriteLine($"{theRock.Name.ToUpper()}: {theRock.Roshambo.ToString()}");
-        var resultsR = CheckOutcome(player1.Roshambo.ToString(), theRock.Roshambo.ToString());
+        Console.WriteLine($"{player1.Name}: {player1.Roshambo.ToString()}");
+        Console.WriteLine($"{theRock.Name}: {theRock.Roshambo.ToString()}");
+        var resultsR = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRock.Roshambo.ToString(), theRock.Name);
         return resultsR;
     }
 
@@ -107,52 +112,52 @@ string PlayGame(string opponent)
     theRandom.Roshambo = theRandom.GenerateRoshambo();
     Console.WriteLine($"{player1.Name.ToUpper()}: {player1.Roshambo.ToString()}");
     Console.WriteLine($"{theRandom.Name.ToUpper()}: {theRandom.Roshambo.ToString()}");
-    var resultsW = CheckOutcome(player1.Roshambo.ToString(), theRandom.Roshambo.ToString());
+    var resultsW = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRandom.Roshambo.ToString(), theRandom.Name);
     return resultsW;
 }
 
 
-string CheckOutcome(string player1, string computerPlayer)
+string CheckOutcome(string player1, string player1Name, string computerPlayer, string computerPlayerName)
 {
     if (player1 == "Rock" && computerPlayer == "Paper")
     {
-        return "You Lose! Paper Covers Rock";
+        return $"{computerPlayerName} wins!!";
     }
 
     if (player1 == "Rock" && computerPlayer == "Scissors")
     {
-        return "You Win! Rock smashes scissors";
+        return $"{player1Name} ins!";
     }
     if (player1 == "Rock" && computerPlayer == "Rock")
     {
-        return "You Draw!";
+        return "Draw!";
     }
 
     if (player1 == "Paper" && computerPlayer == "Rock")
     {
-        return "You Win! Paper Covers Rock";
+        return $"{player1Name} wins!";
     }
 
     if (player1 == "Paper" && computerPlayer == "Scissors")
     {
-        return "You Lose! Scissors cuts paper";
+        return $"{computerPlayerName} wins!";
     }
 
     if (player1 == "Paper" && computerPlayer == "Paper")
     {
-        return "You Draw!";
+        return "Draw!";
     }
 
     if (player1 == "Scissors" && computerPlayer == "Rock")
     {
-        return "You Lose! Rock smashes scissors!";
+        return $"{computerPlayerName} wins!]";
     }
 
     if (player1 == "Scissors" && computerPlayer == "Paper")
     {
-        return "You Win! Scissors cuts paper";
+        return $"{player1Name} wins!";
     }
 
 
-    return "You Draw!";
+    return "Draw!";
 }
