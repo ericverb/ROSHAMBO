@@ -18,14 +18,14 @@ namespace ROSHAMBO
         public override Roshambo GenerateRoshambo()
         {
             Random random = new Random();
-            int returnValue = random.Next(1, 3);
+            int returnValue = random.Next(0, 2);
 
             switch (returnValue)
             {
-                case 1:
+                case 0:
                     return Roshambo.Rock;
 
-                case 2:
+                case 1:
                     return Roshambo.Paper;
 
                 default:

@@ -67,7 +67,6 @@ void CheckPlayerName(string player1Name)
     {
         player1.Name = "player 1";
     }
-
 }
 
 
@@ -104,7 +103,8 @@ string PlayGame(string opponent)
         theRock.Roshambo = theRock.GenerateRoshambo();
         Console.WriteLine($"{player1.Name}: {player1.Roshambo.ToString()}");
         Console.WriteLine($"{theRock.Name}: {theRock.Roshambo.ToString()}");
-        var resultsR = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRock.Roshambo.ToString(), theRock.Name);
+        var resultsR = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRock.Roshambo.ToString(),
+            theRock.Name);
         return resultsR;
     }
 
@@ -112,7 +112,8 @@ string PlayGame(string opponent)
     theRandom.Roshambo = theRandom.GenerateRoshambo();
     Console.WriteLine($"{player1.Name.ToUpper()}: {player1.Roshambo.ToString()}");
     Console.WriteLine($"{theRandom.Name.ToUpper()}: {theRandom.Roshambo.ToString()}");
-    var resultsW = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRandom.Roshambo.ToString(), theRandom.Name);
+    var resultsW = CheckOutcome(player1.Roshambo.ToString(), player1.Name, theRandom.Roshambo.ToString(),
+        theRandom.Name);
     return resultsW;
 }
 
@@ -128,6 +129,7 @@ string CheckOutcome(string player1, string player1Name, string computerPlayer, s
     {
         return $"{player1Name} ins!";
     }
+
     if (player1 == "Rock" && computerPlayer == "Rock")
     {
         return "Draw!";
